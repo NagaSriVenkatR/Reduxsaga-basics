@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-
+import { fetchUser } from './Redux/Action/Action';
 function App() {
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector(
+    (state) => state.userReducer
+  ) || { user: null, loading: false, error: null };
+  const handleFetchUser = () => {
+    dispatch(fetchUser(1));
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Redux-Saga User Fetch Example</h1>
+      <button onClick={handleFetchUser} disabled={loading}>
+        {loading ?'Loading...' : 'Fetch User'}
+      </button>
+
+      {error && <p style={{color:'red'}}>Error  : {error}</p>}
+
+      {user && (
+        <div> 
+          <h2>User Info</h2>
+          <p><strong>Name:</strong> {user.name}</p>
+          <p><strong>Email:</strong> {user.email}</p>
+        </div>
+      )}
     </div>
   );
 }
