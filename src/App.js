@@ -1,17 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { fetchUser } from './Redux/Action/Action';
+import { takeGetUserFetchAction } from './Redux1/Action/actionCreator';
+// import { fetchUser } from './Redux/Action/Action';
 function App() {
   const dispatch = useDispatch();
-  const { user, loading, error } = useSelector(
-    (state) => state.userReducer
-  ) || { user: null, loading: false, error: null };
-  const handleFetchUser = () => {
-    dispatch(fetchUser(1));
-  }
+  // const { user, loading, error } = useSelector(
+  //   (state) => state.userReducer);
+  const retivedData = useSelector((state) =>{
+    return state.myReducer;
+  })
+  // const handleFetchUser = () => {
+  //   dispatch(fetchUser(1));
+  // }
+
   return (
     <div className="App">
-      <h1>Redux-Saga User Fetch Example</h1>
+      {/* <h1>Redux-Saga User Fetch Example</h1>
       <button onClick={handleFetchUser} disabled={loading}>
         {loading ?'Loading...' : 'Fetch User'}
       </button>
@@ -24,7 +28,18 @@ function App() {
           <p><strong>Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
         </div>
-      )}
+      )} */}
+      <h1>User example for Redux-Saga</h1>
+      <button onClick={() => dispatch(takeGetUserFetchAction())}>
+        Call API
+      </button>
+      <hr />
+      <div>
+        {retivedData?.users && retivedData.users.map((user) => (
+          <div key={user.id}>{user.name}</div>
+        ))}
+        {retivedData?.error && <p>{retivedData.error.message}</p>}
+      </div>
     </div>
   );
 }
