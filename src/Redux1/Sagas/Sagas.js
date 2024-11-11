@@ -1,12 +1,14 @@
 import axios from "axios";
 import { call, put, take } from "redux-saga/effects";
 import { GET_USERS_FAILURE, GET_USERS_FETCH, GET_USERS_SUCCESS } from "../Action/ACtion";
-function userFetch() {
-  axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+async function userFetch() {
+  return axios
+  .get("https://jsonplaceholder.typicode.com/users")
+  .then((res) => {
     return res.data;
   }).catch((err) => {
-    throw err
-  })
+    throw err;
+  });
 }
 function* getUsersFetch() {
   try {

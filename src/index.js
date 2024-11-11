@@ -1,5 +1,5 @@
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -7,11 +7,12 @@ import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import myReducer from './Redux1/Reducer/myReducer';
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import mySaga from './Redux1/Sagas/Sagas';
+// import mySaga from './Redux1/Sagas/Sagas';
+import { watchFetchData } from './Redux 2/saga';
 
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
+// const rootElement = document.getElementById("root");
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({ myReducer }); //in case you have more than one reducer just comma seprate them here
@@ -21,13 +22,13 @@ const store = configureStore({
     getDefaultMiddleware().concat(sagaMiddleware),
 });
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(watchFetchData);
 root.render(
-  <StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <React.StrictMode>
       <App />
-    </Provider>
-  </StrictMode>
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

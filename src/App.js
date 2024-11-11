@@ -1,14 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import { takeGetUserFetchAction } from './Redux1/Action/actionCreator';
+import MyComponents from './components/MyComponents';
+// import { takeGetUserFetchAction } from './Redux1/Action/actionCreator';
 // import { fetchUser } from './Redux/Action/Action';
 function App() {
-  const dispatch = useDispatch();
-  // const { user, loading, error } = useSelector(
-  //   (state) => state.userReducer);
-  const retivedData = useSelector((state) =>{
-    return state.myReducer;
-  })
+  // const dispatch = useDispatch();
+  // // const { user, loading, error } = useSelector(
+  // //   (state) => state.userReducer);
+  // const retivedData = useSelector((state) =>{
+  //   return state.myReducer;
+  // })
   // const handleFetchUser = () => {
   //   dispatch(fetchUser(1));
   // }
@@ -29,7 +30,7 @@ function App() {
           <p><strong>Email:</strong> {user.email}</p>
         </div>
       )} */}
-      <h1>User example for Redux-Saga</h1>
+      {/* <h1>User example for Redux-Saga</h1>
       <button onClick={() => dispatch(takeGetUserFetchAction())}>
         Call API
       </button>
@@ -39,7 +40,8 @@ function App() {
           <div key={user.id}>{user.name}</div>
         ))}
         {retivedData?.error && <p>{retivedData.error.message}</p>}
-      </div>
+      </div> */}
+      <MyComponents />
     </div>
   );
 }
