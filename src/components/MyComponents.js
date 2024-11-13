@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteDataRequest, fetchDataRequest } from '../Redux 2/action';
+import { deleteDataRequest, fetchDataSuccess } from '../Redux 2/action';
 
 const MyComponents = () => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.data);
-  const error = useSelector((state) => state.error);
+  const data = useSelector((state) => state.dataReducer.data);
+  const error = useSelector((state) => state.dataReducer.error);
   useEffect(() => {
-    dispatch(fetchDataRequest());
-    console.log(fetchDataRequest);
+    dispatch(fetchDataSuccess());
+    console.log(fetchDataSuccess);
   },[dispatch]);
   const handleDeleteData = () => {
     dispatch(deleteDataRequest());
@@ -32,7 +32,7 @@ const MyComponents = () => {
         )
         }
       </div>
-      <button className='fetch-button' onClick={() => dispatch(fetchDataRequest())}>
+      <button className='fetch-button' onClick={() => dispatch(fetchDataSuccess())}>
         Fetch Data
       </button>
       <button className='delete-button' onClick={handleDeleteData}>

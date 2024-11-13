@@ -5,24 +5,25 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
-import myReducer from './Redux1/Reducer/myReducer';
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import dataReducer from './Redux 2/reducers/index';
+import { configureStore} from "@reduxjs/toolkit";
 // import mySaga from './Redux1/Sagas/Sagas';
 import { watchFetchData } from './Redux 2/saga';
 
 
 // const rootElement = document.getElementById("root");
-const root = ReactDOM.createRoot(document.getElementById("root"));
+
 
 const sagaMiddleware = createSagaMiddleware();
-const rootReducer = combineReducers({ myReducer }); //in case you have more than one reducer just comma seprate them here
+// const rootReducer = combineReducers({ myReducer }); //in case you have more than one reducer just comma seprate them here
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {dataReducer},
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware),
 });
 
 sagaMiddleware.run(watchFetchData);
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
