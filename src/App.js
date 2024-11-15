@@ -42,6 +42,7 @@ function App() {
         {retivedData?.error && <p>{retivedData.error.message}</p>}
       </div> */}
       <MyComponents />
+      
     </div>
   );
 }
