@@ -4,25 +4,27 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import createSagaMiddleware from 'redux-saga';
-import dataReducer from './Redux 2/reducers/index';
-import { configureStore} from "@reduxjs/toolkit";
+import store from './Redux 4/Store/store';
+// import store from './Redux 3/store/Store';
+// import createSagaMiddleware from 'redux-saga';
+// import dataReducer from './Redux 2/reducers/index';
+// import { configureStore} from "@reduxjs/toolkit";
 // import mySaga from './Redux1/Sagas/Sagas';
-import { watchFetchData } from './Redux 2/saga';
+// import { watchFetchData } from './Redux 2/saga';
 
 
 // const rootElement = document.getElementById("root");
 
 
-const sagaMiddleware = createSagaMiddleware();
-// const rootReducer = combineReducers({ myReducer }); //in case you have more than one reducer just comma seprate them here
-const store = configureStore({
-  reducer: {dataReducer},
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(sagaMiddleware),
-});
+// const sagaMiddleware = createSagaMiddleware();
+// // const rootReducer = combineReducers({ myReducer }); //in case you have more than one reducer just comma seprate them here
+// const store = configureStore({
+//   reducer: {dataReducer},
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware().concat(sagaMiddleware),
+// });
 
-sagaMiddleware.run(watchFetchData);
+// sagaMiddleware.run(watchFetchData);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>

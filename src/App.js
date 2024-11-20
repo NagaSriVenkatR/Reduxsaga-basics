@@ -1,6 +1,8 @@
 // import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import MyComponents from './components/MyComponents';
+import FormComponent from './components/FormComponent';
+// import MyComponent from './components/MyComponent';
+// import MyComponents from './components/MyComponents';
 // import { takeGetUserFetchAction } from './Redux1/Action/actionCreator';
 // import { fetchUser } from './Redux/Action/Action';
 function App() {
@@ -41,8 +43,9 @@ function App() {
         ))}
         {retivedData?.error && <p>{retivedData.error.message}</p>}
       </div> */}
-      <MyComponents />
-      
+      {/* <MyComponents /> */}
+      {/* <MyComponent /> */}
+      <FormComponent />
     </div>
   );
 }
